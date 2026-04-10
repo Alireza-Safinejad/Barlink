@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Barlink</title>
+
+<style>
+
+body{
+font-family:tahoma;
+margin:0;
+background:#f2f5f7;
+}
+
+header{
+background:#0b5ed7;
+color:white;
+padding:15px;
+text-align:center;
+font-size:22px;
+}
+
+.container{
+padding:15px;
+}
+
+.card{
+background:white;
+padding:15px;
+margin-bottom:15px;
+border-radius:10px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.price{
+font-size:22px;
+color:green;
+font-weight:bold;
+}
+
+button{
+background:#198754;
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+font-size:16px;
+margin-top:10px;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+.menu{
+position:fixed;
+bottom:0;
+width:100%;
+background:white;
+display:flex;
+justify-content:space-around;
+padding:10px;
+box-shadow:0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.menu button{
+width:auto;
+padding:10px;
+background:none;
+color:#0b5ed7;
+font-weight:bold;
+}
+
+.hidden{
+display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+BARLINK
+
+</header>
+
+
+<div class="container">
+
+<div id="login">
+
+<h3>
+ورود راننده
+</h3>
+
+<input placeholder="نام">
+
+<input placeholder="شماره موبایل">
+
+<select>
+
+<option>
+نوع کامیون
+</option>
+
+<option>
+تریلی
+</option>
+
+<option>
+کمپرسی
+</option>
+
+<option>
+یخچالی
+</option>
+
+<option>
+کفی
+</option>
+
+</select>
+
+<input placeholder="شهر">
+
+<button onclick="enterApp()">
+
+ورود به بارلینک
+
+</button>
+
+</div>
+
+
+<div id="dashboard" class="hidden">
+
+<h3>
+بارهای پیشنهادی
+</h3>
+
+
+<div class="card">
+
+<p>
+سیرجان → بندرعباس
+</p>
+
+<p>
+بار معدنی
+</p>
+
+<p class="price">
+
+۳۲,۰۰۰,۰۰۰ تومان
+
+</p>
+
+<p>
+
+فاصله تا مبدا: ۴۰ کیلومتر
+
+</p>
+
+<button>
+
+تماس با بارفرما
+
+</button>
+
+</div>
+
+
+
+<div class="card">
+
+<p>
+
+سیرجان → یزد
+
+</p>
+
+<p>
+
+مواد غذایی
+
+</p>
+
+<p class="price">
+
+۲۶,۰۰۰,۰۰۰ تومان
+
+</p>
+
+<p>
+
+فاصله تا مبدا: ۲۰ کیلومتر
+
+</p>
+
+<button>
+
+تماس با بارفرما
+
+</button>
+
+</div>
+
+
+
+<div class="card">
+
+<p>
+
+سیرجان → تهران
+
+</p>
+
+<p>
+
+بار صنعتی
+
+</p>
+
+<p class="price">
+
+۴۵,۰۰۰,۰۰۰ تومان
+
+</p>
+
+<p>
+
+فاصله تا مبدا: ۶۰ کیلومتر
+
+</p>
+
+<button>
+
+تماس با بارفرما
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<div class="menu hidden" id="menu">
+
+<button onclick="showLoads()">
+
+بارها
+
+</button>
+
+<button onclick="showProfile()">
+
+پروفایل
+
+</button>
+
+</div>
+
+
+
+<script>
+
+function enterApp(){
+
+document.getElementById("login").classList.add("hidden")
+
+document.getElementById("dashboard").classList.remove("hidden")
+
+document.getElementById("menu").classList.remove("hidden")
+
+}
+
+
+function showLoads(){
+
+alert("در نسخه بعدی: لیست کامل بارها")
+
+}
+
+
+function showProfile(){
+
+alert("در نسخه بعدی: اطلاعات راننده")
+
+}
+
+</script>
+
+
+
+</body>
+
+</html>
