@@ -4,7 +4,7 @@ font-family:tahoma;
 
 margin:0;
 
-background:#f5f7fa;
+background:#f1f4f8;
 
 }
 
@@ -40,7 +40,50 @@ background:white;
 
 padding:10px;
 
-box-shadow:0 -3px 8px rgba(0,0,0,0.1);
+box-shadow:0 -3px 10px rgba(0,0,0,0.1);
+
+}
+
+
+nav button{
+
+background:none;
+
+border:none;
+
+color:#0d6efd;
+
+font-size:14px;
+
+}
+
+
+.card{
+
+background:white;
+
+margin:12px;
+
+padding:15px;
+
+border-radius:14px;
+
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+
+}
+
+
+input,select{
+
+width:100%;
+
+padding:12px;
+
+margin-top:10px;
+
+border-radius:8px;
+
+border:1px solid #ddd;
 
 }
 
@@ -55,21 +98,21 @@ border:none;
 
 padding:12px;
 
+margin-top:10px;
+
 border-radius:8px;
+
+width:100%;
 
 }
 
 
-.card{
+#map{
 
-background:white;
+height:70vh;
 
 margin:10px;
 
-padding:15px;
-
 border-radius:12px;
-
-box-shadow:0 2px 6px rgba(0,0,0,0.1);
 
 }
