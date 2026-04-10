@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Barlink</title>
@@ -14,11 +13,11 @@
 body{
 font-family:tahoma;
 margin:0;
-background:#f2f5f7;
+background:#eef2f5;
 }
 
 header{
-background:#0b5ed7;
+background:#0d6efd;
 color:white;
 padding:15px;
 text-align:center;
@@ -27,19 +26,20 @@ font-size:22px;
 
 .container{
 padding:15px;
+padding-bottom:80px;
 }
 
 .card{
 background:white;
 padding:15px;
 margin-bottom:15px;
-border-radius:10px;
-box-shadow:0 2px 5px rgba(0,0,0,0.1);
+border-radius:12px;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
 
 .price{
-font-size:22px;
-color:green;
+font-size:20px;
+color:#198754;
 font-weight:bold;
 }
 
@@ -60,6 +60,7 @@ padding:10px;
 margin-top:10px;
 border-radius:8px;
 border:1px solid #ddd;
+font-size:16px;
 }
 
 .menu{
@@ -70,19 +71,26 @@ background:white;
 display:flex;
 justify-content:space-around;
 padding:10px;
-box-shadow:0 -2px 5px rgba(0,0,0,0.1);
+box-shadow:0 -2px 6px rgba(0,0,0,0.1);
 }
 
 .menu button{
 width:auto;
 padding:10px;
 background:none;
-color:#0b5ed7;
+color:#0d6efd;
 font-weight:bold;
 }
 
 .hidden{
 display:none;
+}
+
+.badge{
+background:#e9ecef;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
 }
 
 </style>
@@ -100,17 +108,18 @@ BARLINK
 
 <div class="container">
 
+
 <div id="login">
 
 <h3>
-ورود راننده
+ثبت راننده
 </h3>
 
-<input placeholder="نام">
+<input id="name" placeholder="نام">
 
-<input placeholder="شماره موبایل">
+<input id="phone" placeholder="شماره موبایل">
 
-<select>
+<select id="truck">
 
 <option>
 نوع کامیون
@@ -125,137 +134,60 @@ BARLINK
 </option>
 
 <option>
-یخچالی
+کفی
 </option>
 
 <option>
-کفی
+یخچالی
 </option>
 
 </select>
 
-<input placeholder="شهر">
+<input id="city" placeholder="شهر فعلی">
 
 <button onclick="enterApp()">
 
-ورود به بارلینک
+ورود
 
 </button>
 
 </div>
 
 
-<div id="dashboard" class="hidden">
+
+<div id="loadsPage" class="hidden">
 
 <h3>
-بارهای پیشنهادی
+بارهای نزدیک شما
 </h3>
 
+<input placeholder="جستجوی شهر مقصد" onkeyup="searchLoads(this.value)">
+
+
+<div id="loadsList"></div>
+
+</div>
+
+
+
+<div id="profilePage" class="hidden">
+
+<h3>
+پروفایل راننده
+</h3>
 
 <div class="card">
 
-<p>
-سیرجان → بندرعباس
-</p>
+<p id="profileName"></p>
 
-<p>
-بار معدنی
-</p>
+<p id="profileTruck"></p>
 
-<p class="price">
-
-۳۲,۰۰۰,۰۰۰ تومان
-
-</p>
-
-<p>
-
-فاصله تا مبدا: ۴۰ کیلومتر
-
-</p>
-
-<button>
-
-تماس با بارفرما
-
-</button>
+<p id="profileCity"></p>
 
 </div>
 
-
-
-<div class="card">
-
-<p>
-
-سیرجان → یزد
-
-</p>
-
-<p>
-
-مواد غذایی
-
-</p>
-
-<p class="price">
-
-۲۶,۰۰۰,۰۰۰ تومان
-
-</p>
-
-<p>
-
-فاصله تا مبدا: ۲۰ کیلومتر
-
-</p>
-
-<button>
-
-تماس با بارفرما
-
-</button>
-
 </div>
 
-
-
-<div class="card">
-
-<p>
-
-سیرجان → تهران
-
-</p>
-
-<p>
-
-بار صنعتی
-
-</p>
-
-<p class="price">
-
-۴۵,۰۰۰,۰۰۰ تومان
-
-</p>
-
-<p>
-
-فاصله تا مبدا: ۶۰ کیلومتر
-
-</p>
-
-<button>
-
-تماس با بارفرما
-
-</button>
-
-</div>
-
-
-</div>
 
 </div>
 
@@ -281,32 +213,164 @@ BARLINK
 
 <script>
 
+let loads = [
+
+{
+origin:"سیرجان",
+destination:"بندرعباس",
+price:"32,000,000",
+cargo:"مواد معدنی",
+distance:40
+},
+
+{
+origin:"سیرجان",
+destination:"یزد",
+price:"26,000,000",
+cargo:"مواد غذایی",
+distance:20
+},
+
+{
+origin:"کرمان",
+destination:"تهران",
+price:"45,000,000",
+cargo:"بار صنعتی",
+distance:60
+},
+
+{
+origin:"اصفهان",
+destination:"مشهد",
+price:"55,000,000",
+cargo:"کاشی",
+distance:80
+},
+
+{
+origin:"شیراز",
+destination:"بندرعباس",
+price:"28,000,000",
+cargo:"میوه",
+distance:35
+}
+
+]
+
+
 function enterApp(){
+
+let name = document.getElementById("name").value
+
+let truck = document.getElementById("truck").value
+
+let city = document.getElementById("city").value
+
+document.getElementById("profileName").innerText = "نام: " + name
+
+document.getElementById("profileTruck").innerText = "کامیون: " + truck
+
+document.getElementById("profileCity").innerText = "شهر: " + city
+
 
 document.getElementById("login").classList.add("hidden")
 
-document.getElementById("dashboard").classList.remove("hidden")
-
 document.getElementById("menu").classList.remove("hidden")
 
+showLoads()
+
+renderLoads(loads)
+
 }
+
+
+
+function renderLoads(data){
+
+let html = ""
+
+data.forEach(load => {
+
+html += `
+
+<div class="card">
+
+<p>
+
+${load.origin} → ${load.destination}
+
+</p>
+
+<p>
+
+${load.cargo}
+
+</p>
+
+<p class="price">
+
+${load.price} تومان
+
+</p>
+
+<p class="badge">
+
+فاصله تا مبدا: ${load.distance} کیلومتر
+
+</p>
+
+<button>
+
+تماس با بارفرما
+
+</button>
+
+</div>
+
+`
+
+})
+
+document.getElementById("loadsList").innerHTML = html
+
+}
+
 
 
 function showLoads(){
 
-alert("در نسخه بعدی: لیست کامل بارها")
+document.getElementById("loadsPage").classList.remove("hidden")
+
+document.getElementById("profilePage").classList.add("hidden")
 
 }
+
 
 
 function showProfile(){
 
-alert("در نسخه بعدی: اطلاعات راننده")
+document.getElementById("profilePage").classList.remove("hidden")
+
+document.getElementById("loadsPage").classList.add("hidden")
 
 }
 
-</script>
 
+
+function searchLoads(value){
+
+let filtered = loads.filter(load =>
+
+load.destination.includes(value)
+
+)
+
+renderLoads(filtered)
+
+}
+
+
+</script>
 
 
 </body>
