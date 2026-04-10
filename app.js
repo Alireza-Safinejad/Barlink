@@ -2,138 +2,72 @@ function router(page){
 
 if(page=="loads"){
 
-showLoads()
-
-}
-
-
-if(page=="profile"){
-
-showProfile()
-
-}
-
-
-if(page=="postLoad"){
-
-showPostLoad()
+loadList()
 
 }
 
 
 if(page=="map"){
 
-showMap()
+loadMap()
+
+}
+
+
+if(page=="postLoad"){
+
+loadPostLoad()
+
+}
+
+
+if(page=="profile"){
+
+loadProfile()
 
 }
 
 }
 
 
-function showLoads(){
+function start(){
 
-let html=""
+let d=getDriver()
 
-loads.forEach(load=>{
+if(!d){
 
-html+=`
+showRegister()
 
-<div class="card">
+}
 
-${load.origin} → ${load.destination}
+else{
 
-<br>
+loadList()
 
-${load.cargo}
-
-<br>
-
-${load.price}
-
-<br>
-
-<button onclick="showLoadDetail(${load.id})">
-
-جزئیات
-
-</button>
-
-</div>
-
-`
-
-})
-
-document.getElementById("app").innerHTML=html
+}
 
 }
 
 
-function showLoadDetail(id){
-
-let l=loads.find(x=>x.id==id)
+function showRegister(){
 
 document.getElementById("app").innerHTML=`
 
 <div class="card">
 
-مبدا: ${l.origin}
+ثبت راننده
 
-<br>
+<input id="name">
 
-مقصد: ${l.destination}
+<select id="city">
 
-<br>
+${cities.map(c=>
 
-بار: ${l.cargo}
+`<option>${c}</option>`).join("")}
 
-<br>
+</select>
 
-قیمت: ${l.price}
-
-<br>
-
-<button>
-
-تماس
-
-</button>
-
-</div>
-
-`
-
-}
-
-
-function showProfile(){
-
-document.getElementById("app").innerHTML=`
-
-<div class="card">
-
-پروفایل راننده
-
-</div>
-
-`
-
-}
-
-
-function showPostLoad(){
-
-document.getElementById("app").innerHTML=`
-
-<div class="card">
-
-ثبت بار
-
-<input placeholder="مبدا">
-
-<input placeholder="مقصد">
-
-<button>
+<button onclick="register()">
 
 ثبت
 
@@ -146,19 +80,20 @@ document.getElementById("app").innerHTML=`
 }
 
 
-function showMap(){
+function register(){
 
-document.getElementById("app").innerHTML=`
+saveDriver({
 
-<div class="card">
+name:name.value,
 
-در نسخه بعد نقشه اضافه می‌شود
+city:city.value
 
-</div>
+})
 
-`
+
+loadList()
 
 }
 
 
-showLoads()
+start()
