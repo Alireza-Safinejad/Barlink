@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>داشبورد بار</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="dashboard">
+
+    <aside class="sidebar">
+      <h2>🚛 باریار هوشمند</h2>
+      <button onclick="loadData()">🔄 دریافت بارها</button>
+      <button onclick="filterHighProfit()">💰 بارهای سود بالا</button>
+      <button onclick="filterNear()">📍 نزدیک‌ترین بارها</button>
+    </aside>
+
+    <main class="main">
+
+      <header class="topbar">
+        <h3>داشبورد راننده</h3>
+        <div id="status">در حال اتصال...</div>
+      </header>
+
+      <section id="loadsContainer" class="loads-container">
+        <!-- بارها اینجا لود میشن -->
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="app.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>
