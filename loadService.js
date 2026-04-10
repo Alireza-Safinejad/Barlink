@@ -1,15 +1,25 @@
 const iranLoadBoards = require('./integrations/iranLoadBoards');
+const { scoreLoad } = require('./scoring');
 
 async function getLoads() {
-  const loads = await iranLoadBoards.fetchLoads();
+  let loads = await iranLoadBoards.fetchLoads();
+
+  // اضافه کردن امتیاز به هر بار
+  loads = loads.map(load => ({
+    ...load,
+    score: scoreLoad(load)
+  }));
+
+  // مرتب‌سازی بر اساس بهترین بار
+  loads.sort((a, b) => b.score - a.score);
+
   return loads;
 }
 
 async function selectLoad(loadId) {
-  // اینجا فقط انتخاب منطقی انجام میشه
   return {
     success: true,
-    message: "Load selected (pending confirmation by user)"
+    message: "بار انتخاب شد (در حالت شبیه‌سازی)"
   };
 }
 
